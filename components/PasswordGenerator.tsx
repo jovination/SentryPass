@@ -10,13 +10,16 @@ import { IoRefresh } from "react-icons/io5"
 import { RxMinus } from "react-icons/rx"
 import { GoPlus } from "react-icons/go"
 
+const MAX_VISIBLE_LENGTH = 16
+const MAX_PASSWORD_LENGTH = 100
+
 export default function PasswordGenerator() {
   const [password, setPassword] = useState("")
   const [length, setLength] = useState(15)
   const [useUppercase, setUseUppercase] = useState(true)
   const [useLowercase, setUseLowercase] = useState(true)
   const [useNumbers, setUseNumbers] = useState(true)
-  const [useSymbols, setUseSymbols] = useState(true)
+  const [useSymbols, setUseSymbols] = useState(false)
 
   const generatePassword = () => {
     let charset = ""
@@ -43,32 +46,39 @@ export default function PasswordGenerator() {
 
   const getPasswordStrength = () => {
     let strength = 0
-    if (length > 10) strength++
+    if (length >= 8) strength++
+    if (length >= 12) strength++
     if (useUppercase) strength++
     if (useLowercase) strength++
     if (useNumbers) strength++
     if (useSymbols) strength++
 
-    if (strength <= 2) return "Weak"
-    if (strength <= 4) return "Strong"
-    return "Very strong"
+    if (strength <= 3) return { text: "Weak", color: "#EFBEBE" }
+    if (strength === 4) return { text: "Good", color: "#F9EDBD" }
+    if (strength === 5) return { text: "Strong", color: "#DFF1C0" }
+    return { text: "Very strong", color: "#DFF1C0" }
   }
+
+  const visiblePassword = password.slice(0, MAX_VISIBLE_LENGTH)
+  const hiddenChars = password.length > MAX_VISIBLE_LENGTH ? password.length - MAX_VISIBLE_LENGTH : 0
 
   return (
     <div className="w-[560px] h-[312px] flex flex-col justify-center space-y-14">
       <div className="flex items-center justify-between">
         <div className="w-full max-w-[450px] h-[56px] rounded-full pr-4 pl-6 border border-[#d4d4d8] flex items-center justify-between">
-          <div>
+          <div className="overflow-hidden">
             <Label className="text-base font-lg" htmlFor="password">
-              {password}
+              {visiblePassword}
+              {hiddenChars > 0 && <span className="text-gray-400">+{hiddenChars}</span>}
             </Label>
           </div>
           <div className="flex items-center gap-2">
             <Label
-              className="bg-[#C2F0CE] px-3 py-1 rounded-md text-xs font-[600] tracking-wider"
+              className="px-3 py-1 rounded-md text-xs font-[600] tracking-wider"
               htmlFor="password-level-status"
+              style={{ backgroundColor: getPasswordStrength().color }}
             >
-              {getPasswordStrength()}
+              {getPasswordStrength().text}
             </Label>
             <Link
               href="/"
@@ -106,14 +116,14 @@ export default function PasswordGenerator() {
             className="w-[220px]"
             value={[length]}
             onValueChange={(value) => setLength(value[0])}
-            max={100}
+            max={MAX_PASSWORD_LENGTH}
             step={1}
           />
           <Button
             className="rounded-full border border-black"
             variant="outline"
             size="icon"
-            onClick={() => setLength(Math.min(100, length + 1))}
+            onClick={() => setLength(Math.min(MAX_PASSWORD_LENGTH, length + 1))}
           >
             <GoPlus />
           </Button>
