@@ -1,7 +1,14 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Label } from "@/components/ui/label"
-import { IoRefreshOutline } from "react-icons/io5";
+import { IoRefresh } from "react-icons/io5";
+import { GoPlus } from "react-icons/go";
+import { RxMinus } from "react-icons/rx";
+import { Slider } from "@/components/ui/slider"
+
+
+
+
 import Link from "next/link";
 
 
@@ -23,23 +30,23 @@ function Hero(){
                  height={350}
                 />
                 </div>
-                <div className="w-[560px] h-[312px]">
-                        <div className="flex items-center justify-between">
+                <div className="w-[560px] h-[312px]   space-y-8">
+                    <div className="flex items-center justify-between">
                             <div
-                            className="w-full max-w-[450px] h-[56px] rounded-full px-6 border border-[#d4d4d8] flex items-center justify-between"
+                            className="w-full max-w-[450px] h-[56px] rounded-full pr-4 pl-6 border border-[#d4d4d8] flex items-center justify-between"
                             >
                             <div>    
                             <Label
                             className="text-base font-lg"
                              htmlFor="password">5bUle3YWo8zYjdM</Label>
                             </div>
-                            <div>
+                            <div className="flex items-center gap-2">
                             <Label
-                            className="bg-[#C2F0CE] px-2 py-1 rounded-md  text-xs font-[600] tracking-wider"
+                            className="bg-[#C2F0CE] px-3 py-1 rounded-md  text-xs font-[600] tracking-wider"
                              htmlFor="password-level-status">Very strong</Label>
                              <Link
                               href="/">
-                             <IoRefreshOutline />
+                             <IoRefresh className="text-2xl  scale-x-[-1]" />
                              </Link>
                             </div>
                             
@@ -50,8 +57,32 @@ function Hero(){
                             </Button>
 
                         </div>
-                    <div></div>
-                    <div></div>
+                    <div className="flex items-center justify-between">
+                        <div className="flex flex-col space-y-1 ml-2">
+                            <p>Password length: 
+                            </p>
+                            <p className="font-semibold">15</p>
+                        </div>
+                        <div className="flex items-center justify-between w-full max-w-[320px]">
+                        <Button className="rounded-full border border-black" variant="outline" size="icon">
+                        <RxMinus />
+                        </Button>
+                        <Slider
+                        className="w-[220px]"
+                         defaultValue={[50]} max={100} step={1} />
+
+                        <Button className="rounded-full border border-black" variant="outline" size="icon">
+                        <GoPlus />
+                        </Button>
+
+                        </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <div className="ml-2">
+                            <p>Characters used:</p>
+                        </div>
+                        <div></div>
+                    </div>
                 </div>
             </div>
 
