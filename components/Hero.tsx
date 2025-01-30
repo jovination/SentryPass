@@ -5,6 +5,8 @@ import { IoRefresh } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
 import { RxMinus } from "react-icons/rx";
 import { Slider } from "@/components/ui/slider"
+import { Checkbox } from "@/components/ui/checkbox"
+
 
 
 
@@ -30,7 +32,7 @@ function Hero(){
                  height={350}
                 />
                 </div>
-                <div className="w-[560px] h-[312px]   space-y-8">
+                <div className="w-[560px] h-[312px] flex flex-col justify-center  space-y-14">
                     <div className="flex items-center justify-between">
                             <div
                             className="w-full max-w-[450px] h-[56px] rounded-full pr-4 pl-6 border border-[#d4d4d8] flex items-center justify-between"
@@ -81,7 +83,25 @@ function Hero(){
                         <div className="ml-2">
                             <p>Characters used:</p>
                         </div>
-                        <div></div>
+                        <div className="flex items-center space-x-8">
+                         
+                            <div className="flex items-center space-x-2">
+                                <Checkbox  />
+                                <Label className="text-md font-bold" htmlFor="ABC">ABC</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox  />
+                                <Label className="text-md font-bold" htmlFor="abc">abc</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox  />
+                                <Label className="text-md font-bold" htmlFor="123">123</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox  />
+                                <Label className="text-md font-bold" htmlFor="#$&">#$&</Label>
+                            </div>
+                       </div>
                     </div>
                 </div>
             </div>
