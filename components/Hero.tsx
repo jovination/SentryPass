@@ -37,7 +37,8 @@ function Hero(){
                             <Label
                             className="bg-[#C2F0CE] px-2 py-1 rounded-md  text-xs font-[600] tracking-wider"
                              htmlFor="password-level-status">Very strong</Label>
-                             <Link>
+                             <Link
+                              href="/">
                              <IoRefreshOutline />
                              </Link>
                             </div>
