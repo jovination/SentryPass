@@ -1,10 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 import Link from "next/link"
 import { IoRefresh } from "react-icons/io5"
 import { RxMinus } from "react-icons/rx"
@@ -20,8 +22,9 @@ export default function PasswordGenerator() {
   const [useLowercase, setUseLowercase] = useState(true)
   const [useNumbers, setUseNumbers] = useState(true)
   const [useSymbols, setUseSymbols] = useState(false)
+  const { toast } = useToast()
 
-  const generatePassword = () => {
+  const generatePassword = useCallback(() => {
     let charset = ""
     if (useUppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     if (useLowercase) charset += "abcdefghijklmnopqrstuvwxyz"
@@ -33,16 +36,31 @@ export default function PasswordGenerator() {
       newPassword += charset.charAt(Math.floor(Math.random() * charset.length))
     }
     setPassword(newPassword)
-  }
+  }, [length, useUppercase, useLowercase, useNumbers, useSymbols])
 
   useEffect(() => {
     generatePassword()
-  }, [length, useUppercase, useLowercase, useNumbers, useSymbols])
+  }, [generatePassword])
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(password)
-    alert("Password copied to clipboard!")
+    navigator.clipboard
+      .writeText(password)
+      .then(() => {
+        toast({
+          title: "Password Copied!",
+          description: "The generated password has been copied to your clipboard.",
+          action: <ToastAction altText="Dismiss">Dismiss</ToastAction>,
+        })
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err)
+        toast({
+          title: "Copy Failed",
+          description: "Failed to copy the password. Please try again.",
+        })
+      })
   }
+
 
   const getPasswordStrength = () => {
     let strength = 0

@@ -13,7 +13,7 @@ function Hero(){
             <h1 className="text-5xl font-[900] ">Random Password Generator</h1>
             <p>Create strong and secure passwords to keep your account safe online.</p>
             </div>
-            <div className="flex items-center mt-12 gap-8">
+            <div className="flex flex-col items-center md:flex-col lg:flex-row mt-12 gap-8">
                 <Illustration />
                 <PasswordGenerator />
             </div>
