@@ -81,8 +81,8 @@ export default function PasswordGenerator() {
   const hiddenChars = password.length > MAX_VISIBLE_LENGTH ? password.length - MAX_VISIBLE_LENGTH : 0
 
   return (
-    <div className="w-[560px] h-[312px] flex flex-col justify-center space-y-14">
-      <div className="flex items-center justify-between">
+    <div className="w-[560px] h-[312px] flex flex-col justify-center space-y-14 mt-20 md:mt-0">
+      <div className="flex items-center flex-col gap-6 md:gap-0  md:flex-row md:justify-between ">
         <div className="w-full max-w-[450px] h-[56px] rounded-full pr-4 pl-6 border border-[#d4d4d8] flex items-center justify-between">
           <div className="overflow-hidden">
             <Label className="text-base font-lg" htmlFor="password">
@@ -116,8 +116,8 @@ export default function PasswordGenerator() {
           Copy
         </Button>
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col space-y-1 ml-2">
+      <div className="flex items-center flex-col gap-4 md:gap-0 md:justify-between md:flex-row">
+        <div className="flex flex-row items-center gap-4 md:gap-0 md:items-start  md:flex-col space-y-1 ml-2">
           <p>Password length:</p>
           <p className="font-semibold">{length}</p>
         </div>
@@ -147,7 +147,7 @@ export default function PasswordGenerator() {
           </Button>
         </div>
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center flex-col md:flex-row gap-4 md:gap-0 justify-between">
         <div className="ml-2">
           <p>Characters used:</p>
         </div>
