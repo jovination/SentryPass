@@ -53,19 +53,19 @@ function FaqsList() {
 
   return (
     <div className="w-full max-w-3xl mx-auto p-6">
-    <h1 className="text-4xl lg:text-5xl text-center font-[900] mb-4 ">Password generator FAQs</h1>
+    <h1 className="text-4xl lg:text-5xl text-center font-[900] mb-4 ">Password generator Faqs.</h1>
       <p className="text-center mb-8 text-gray-600">Questions about this random password generator? Answers below!</p>
 
       <div className="bg-white mt-12 ">
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className={`border-x border-gray-200 ${index === 0 ? "rounded-t-[36px] border-t" : ""} ${
+            className={`border-x border-gray-300 ${index === 0 ? "rounded-t-[36px] border-t" : ""} ${
               index === faqs.length - 1 ? "rounded-b-[36px] border-b" : "border-b"
             }`}
           >
             <button
-              className="w-full px-6 py-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200"
+              className="w-full px-6 py-5 text-left flex justify-between items-center  transition-colors duration-200"
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
             >
               <span className="font-medium text-gray-900">{faq.question}</span>
