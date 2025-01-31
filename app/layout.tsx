@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SentryPass - Secure Password Generator",
+  title: "SentryPass - Random Password Generator",
   description: "Create strong, unique, and secure passwords instantly with SentryPass. Protect your accounts with random password generation.",
   keywords: ["password generator", "secure password", "strong password", "random password", "online security"],
   authors: [{ name: "SentryPass Team", url: "https://sentrypasskey.com" }],
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "SentryPass",
     images: [
       {
-        url: "/preview.png",
+        url: "/preview.webp",
         width: 1200,
         height: 630,
         alt: "SentryPass Password Generator UI",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SentryPass - Secure Password Generator",
     description: "Protect your online accounts with strong, secure passwords.",
-    images: ["/preview.png"],
+    images: ["/preview.webp"],
     creator: "@SentryPass",
   },
   robots: {
@@ -57,7 +57,7 @@ export default function RootLayout({
             "name": "SentryPass",
             "url": "https://sentrypasskey.com",
             "description": "Generate strong, secure passwords instantly.",
-            "image": "https://sentrypasskey.com/preview.png",
+            "image": "https://sentrypasskey.com/preview.webp",
             "publisher": {
               "@type": "Organization",
               "name": "SentryPass",
