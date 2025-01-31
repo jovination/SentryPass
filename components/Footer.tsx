@@ -36,7 +36,7 @@ const Footer = () => {
         {/* Navigation Grid */}
         <div className="flex flex-col gap-10  md:flex-row md:justify-between ">
           {/* Left Navigation */}
-          <div className="md:col-span-3 space-y-6">
+          <div className="md:col-span-3 space-y-6 ml-2">
             <div className="space-y-2">
               <Link href="/" className="block text-white/60 hover:text-[#FFBA29]">Security Tools</Link>
               <Link href="/" className="block text-white/60 hover:text-[#FFBA29]">Cases</Link>
