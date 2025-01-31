@@ -50,7 +50,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="md:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="hidden  md:col-span-9 lg:grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="font-medium mb-2">For Business</h3>
               <div className="text-sm text-white/60 mb-4 space-y-2">
