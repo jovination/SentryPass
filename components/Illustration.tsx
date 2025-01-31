@@ -1,7 +1,7 @@
 import Image from "next/image";
 function Illustration(){
     return(
-        <div className="">
+        <div className="w-full flex justify-center p-2">
         <Image
           src="/illustration.svg"
           alt="illustration"

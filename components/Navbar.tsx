@@ -5,7 +5,7 @@ function Navbar(){
     return (
         <div>
          <nav 
-         className="px-4 md:px-8 flex items-center justify-between h-[90px] border-b border-[#C5D6E0]"
+         className="w-full px-4 md:px-8 flex flex-row items-center justify-between h-[90px] border-b border-[#C5D6E0]"
          >
             <Link
             className="flex items-center gap-2"
