@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SentryPass - Secure Password Generator",
     description: "Protect your online accounts with strong, secure passwords.",
-    images: ["/preview.webp"],
+    images: ["/preview.png"],
     creator: "@SentryPass",
   },
   robots: {
@@ -57,7 +57,7 @@ export default function RootLayout({
             "name": "SentryPass",
             "url": "https://sentrypasskey.com",
             "description": "Generate strong, secure passwords instantly.",
-            "image": "https://sentrypasskey.com/preview.webp",
+            "image": "https://sentrypasskey.com/preview.png",
             "publisher": {
               "@type": "Organization",
               "name": "SentryPass",
