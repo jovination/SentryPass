@@ -2,7 +2,7 @@ import FaqsList from "@/components/FaqsList"
 
 function  FaqsSection(){
     return(
-        <div className=" flex items-center h-[1100px] md:h-[1000px]">
+        <div className=" flex items-center h-[1200px] md:h-[1000px]">
             <FaqsList />
         </div>
     )
