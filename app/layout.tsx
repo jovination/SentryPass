@@ -42,6 +42,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "0c9_BjWerDUIs0KC_tCkdKRXtYvm7T078iATqVk09aQ", 
+  },
 };
 
 const GTAG_ID = "G-PQ24X4XHKJ";
