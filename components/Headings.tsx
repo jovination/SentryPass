@@ -1,4 +1,3 @@
-import { motion } from "motion/react"
 
 function Headings(){
     return(
