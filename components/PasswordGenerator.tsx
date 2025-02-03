@@ -118,8 +118,16 @@ export default function PasswordGenerator() {
   const hiddenChars = password.length > MAX_VISIBLE_LENGTH ? password.length - MAX_VISIBLE_LENGTH : 0
 
   return (
-    <div className="w-full max-w-[560px]  h-[312px] flex flex-col justify-center space-y-14 mt-20 md:mt-0 px-2">
-      <div className="flex items-center flex-col gap-6 md:gap-0  md:flex-row md:space-x-5 ">
+    <motion.div 
+    className="w-full max-w-[560px] h-[312px] flex flex-col justify-center space-y-14 mt-20 md:mt-0 px-2"
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ 
+      delay: 2,
+      duration: 0.4,
+      type: "spring"
+    }}
+  >      <div className="flex items-center flex-col gap-6 md:gap-0  md:flex-row md:space-x-5 ">
         <div className="w-full max-w-[450px] h-[56px] rounded-full pr-4 pl-6 border border-[#d4d4d8] flex items-center justify-between">
           <div className="overflow-hidden">
             <motion.div animate={controls} initial={{ opacity: 0 }}>
@@ -225,7 +233,7 @@ export default function PasswordGenerator() {
           </div>
         </div>
       </div>
-    </div>
+      </motion.div>
   )
 }
 
