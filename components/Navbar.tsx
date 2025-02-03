@@ -16,7 +16,7 @@ function Navbar(){
               width={45}
               height={45}
              />
-             <span className="text-2xl font-black">SentryPass</span>
+             <span className="text-2xl font-black">SentryPasskey</span>
             </Link>
             <Button className="rounded-[48px] text-lg font-medium w-[120px] h-[48px]" size="lg" >Get App</Button>
          </nav>
