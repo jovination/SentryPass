@@ -131,7 +131,7 @@ export default function PasswordGenerator() {
         <div className="w-full max-w-[450px] h-[56px] rounded-full pr-4 pl-6 border border-[#d4d4d8] flex items-center justify-between">
           <div className="overflow-hidden">
             <motion.div animate={controls} initial={{ opacity: 0 }}>
-              <Label className="text-base font-lg font-medium" htmlFor="password">
+              <Label className="text-base font-lg" htmlFor="password">
                 {visiblePassword}
                 {hiddenChars > 0 && <span className="text-gray-400">+{hiddenChars}</span>}
               </Label>
