@@ -43,7 +43,7 @@ export default function PasswordGenerator() {
     animatePassword(newPassword)
   }, [length, useUppercase, useLowercase, useNumbers, useSymbols])
 
-  const animatePassword = async (newPassword) => {
+  const animatePassword = async (newPassword: string) => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}[]|:;<>,.?/~"
     let iterations = 0
     const maxIterations = 4
