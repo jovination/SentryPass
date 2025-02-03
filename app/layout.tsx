@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     siteName: "SentryPasskey",
     images: [
       {
-        url: "/preview.webp",
+        url: "/preview.png",
         width: 1200,
         height: 630,
-        alt: "SentryPasskey Password Generator UI",
+        alt: "SentryPasskey Password Generator",
       },
     ],
     type: "website",
@@ -54,21 +54,28 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "SentryPass",
-            "url": "https://sentrypasskey.com",
-            "description": "Generate strong, secure passwords instantly.",
-            "image": "https://sentrypasskey.com/preview.png",
-            "publisher": {
-              "@type": "Organization",
-              "name": "SentryPasskey",
-              "logo": "https://sentrypasskey.com/sentrypass.svg"
-            }
-          })}
-        </script>
+
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "SentryPasskey",
+              url: "https://sentrypasskey.com",
+              description: "Generate strong, secure passwords instantly.",
+              image: "https://sentrypasskey.com/preview.png",
+              publisher: {
+                "@type": "Organization",
+                name: "SentryPasskey",
+                logo: "https://sentrypasskey.com/sentrypass.svg",
+              },
+            }),
+          }}
+        />
+
         <Script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}
@@ -86,8 +93,8 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-helvetica antialiased">
-      <AnalyticsProvider />
-      {children}
+        <AnalyticsProvider />
+        {children}
         <Toaster />
       </body>
     </html>
