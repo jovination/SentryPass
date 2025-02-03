@@ -11,18 +11,22 @@ import Link from "next/link"
 import { IoRefresh } from "react-icons/io5"
 import { RxMinus } from "react-icons/rx"
 import { GoPlus } from "react-icons/go"
+import { motion, useAnimation } from "framer-motion"
 
 const MAX_VISIBLE_LENGTH = 16
 const MAX_PASSWORD_LENGTH = 100
+const ANIMATION_DURATION = 0.5 // seconds
 
 export default function PasswordGenerator() {
   const [password, setPassword] = useState("")
+  const [animatedPassword, setAnimatedPassword] = useState("")
   const [length, setLength] = useState(15)
   const [useUppercase, setUseUppercase] = useState(true)
   const [useLowercase, setUseLowercase] = useState(true)
   const [useNumbers, setUseNumbers] = useState(true)
   const [useSymbols, setUseSymbols] = useState(false)
   const { toast } = useToast()
+  const controls = useAnimation()
 
   const generatePassword = useCallback(() => {
     let charset = ""
@@ -36,7 +40,41 @@ export default function PasswordGenerator() {
       newPassword += charset.charAt(Math.floor(Math.random() * charset.length))
     }
     setPassword(newPassword)
+    animatePassword(newPassword)
   }, [length, useUppercase, useLowercase, useNumbers, useSymbols])
+
+  const animatePassword = async (newPassword) => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}[]|:;<>,.?/~"
+    let iterations = 0
+    const maxIterations = 4
+
+    await controls.start({ opacity: 1, transition: { duration: 0.2 } })
+
+    const interval = setInterval(
+      () => {
+        setAnimatedPassword(
+          newPassword
+            .split("")
+            .map((char, index) => {
+              if (index < iterations) {
+                return char
+              }
+              return chars[Math.floor(Math.random() * chars.length)]
+            })
+            .join(""),
+        )
+
+        if (iterations >= newPassword.length) {
+          clearInterval(interval)
+          setAnimatedPassword(newPassword)
+          controls.start({ opacity: 1 })
+        }
+
+        iterations += 1 / maxIterations
+      },
+      (ANIMATION_DURATION * 500) / newPassword.length,
+    )
+  }
 
   useEffect(() => {
     generatePassword()
@@ -61,7 +99,6 @@ export default function PasswordGenerator() {
       })
   }
 
-
   const getPasswordStrength = () => {
     let strength = 0
     if (length >= 8) strength++
@@ -77,7 +114,7 @@ export default function PasswordGenerator() {
     return { text: "Very strong", color: "#DFF1C0" }
   }
 
-  const visiblePassword = password.slice(0, MAX_VISIBLE_LENGTH)
+  const visiblePassword = animatedPassword.slice(0, MAX_VISIBLE_LENGTH)
   const hiddenChars = password.length > MAX_VISIBLE_LENGTH ? password.length - MAX_VISIBLE_LENGTH : 0
 
   return (
@@ -85,10 +122,12 @@ export default function PasswordGenerator() {
       <div className="flex items-center flex-col gap-6 md:gap-0  md:flex-row md:space-x-5 ">
         <div className="w-full max-w-[450px] h-[56px] rounded-full pr-4 pl-6 border border-[#d4d4d8] flex items-center justify-between">
           <div className="overflow-hidden">
-            <Label className="text-base font-lg" htmlFor="password">
-              {visiblePassword}
-              {hiddenChars > 0 && <span className="text-gray-400">+{hiddenChars}</span>}
-            </Label>
+            <motion.div animate={controls} initial={{ opacity: 0 }}>
+              <Label className="text-base font-lg" htmlFor="password">
+                {visiblePassword}
+                {hiddenChars > 0 && <span className="text-gray-400">+{hiddenChars}</span>}
+              </Label>
+            </motion.div>
           </div>
           <div className="flex items-center gap-2">
             <Label
@@ -153,13 +192,21 @@ export default function PasswordGenerator() {
         </div>
         <div className="flex items-center space-x-8">
           <div className="flex items-center space-x-2">
-            <Checkbox id="ABC" checked={useUppercase} onCheckedChange={(checked) => setUseUppercase(checked === true)} />
+            <Checkbox
+              id="ABC"
+              checked={useUppercase}
+              onCheckedChange={(checked) => setUseUppercase(checked === true)}
+            />
             <Label className="text-md font-bold" htmlFor="ABC">
               ABC
             </Label>
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox id="abc" checked={useLowercase} onCheckedChange={(checked) => setUseLowercase(checked === true)} />
+            <Checkbox
+              id="abc"
+              checked={useLowercase}
+              onCheckedChange={(checked) => setUseLowercase(checked === true)}
+            />
             <Label className="text-md font-bold" htmlFor="abc">
               abc
             </Label>
