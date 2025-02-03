@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import Head from 'next/head';
 import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: './favicon.ico', 
+  },
   title: "SentryPasskey - Secure Password Generator",
   description: "Create strong, unique, and secure passwords instantly with SentryPasskey. Protect your accounts with random password generation.",
   keywords: ["password generator", "secure password", "strong password", "random password", "online security"],
@@ -54,6 +58,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <Head>
+      <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
