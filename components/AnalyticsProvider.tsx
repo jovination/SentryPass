@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { analytics } from "@/lib/firebase";
@@ -14,5 +12,5 @@ export default function AnalyticsProvider() {
     }
   }, [pathname]);
 
-  return null; 
+  return null;
 }
