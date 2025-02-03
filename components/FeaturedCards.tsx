@@ -30,7 +30,7 @@ function FeaturedCards() {
       y: 30,
       scale: 0.98
     },
-    animate: (index) => ({
+    animate: (index: number) => ({
       opacity: 1, 
       y: 0,
       scale: 1,
