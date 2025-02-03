@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
+import { FirebaseInitializer } from "./components/FirebaseInitializer"
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -67,6 +68,7 @@ export default function RootLayout({
         </script>
       </head>
       <body className="font-helvetica antialiased">
+      <FirebaseInitializer />
         {children}
         <Toaster />
       </body>
