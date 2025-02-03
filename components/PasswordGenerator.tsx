@@ -14,8 +14,8 @@ import { GoPlus } from "react-icons/go"
 import { motion, useAnimation } from "framer-motion"
 
 const MAX_VISIBLE_LENGTH = 16
-const MAX_PASSWORD_LENGTH = 100
-const ANIMATION_DURATION = 0.5 // seconds
+const MAX_PASSWORD_LENGTH = 50
+const ANIMATION_DURATION = 0.5 
 
 export default function PasswordGenerator() {
   const [password, setPassword] = useState("")

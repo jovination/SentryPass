@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Toaster } from "@/components/ui/toaster";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -42,6 +44,8 @@ export const metadata: Metadata = {
   },
 };
 
+const GTAG_ID = "G-PQ24X4XHKJ";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -65,9 +69,25 @@ export default function RootLayout({
             }
           })}
         </script>
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GTAG_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </head>
       <body className="font-helvetica antialiased">
-        {children}
+      <AnalyticsProvider />
+      {children}
         <Toaster />
       </body>
     </html>
