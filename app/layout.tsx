@@ -60,6 +60,14 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
 
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7927589278232109"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
         <Script
           id="json-ld"
           type="application/ld+json"
